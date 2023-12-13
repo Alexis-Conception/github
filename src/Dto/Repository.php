@@ -171,7 +171,7 @@ class Repository extends Data implements DataTransferObjectInterface
             archived: $data['archived'] ?? null,
             disabled: $data['disabled'] ?? null,
             openIssuesCount: $data['open_issues_count'] ?? null,
-            license: License::create($data['license']) ?? null,
+            license: License::create($data['license'] ?? null),
             allowForking: $data['allow_forking'] ?? null,
             visibility: $data['visibility'] ?? null,
             forks: $data['forks'] ?? null,

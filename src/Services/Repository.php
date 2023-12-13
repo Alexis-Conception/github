@@ -20,7 +20,7 @@ class Repository
      */
     public static function list(): array
     {
-        $repositories = Request::make('GET', 'orgs/Alexis-Conception/repos');
+        $repositories = Request::make('GET', 'orgs/'. config("github.organization").'/repos');
 
         return array_map(function ($repository) {
             return RepositoryData::create($repository);
@@ -68,7 +68,7 @@ class Repository
         self::ensureRepositoryExists($name);
 
         return RepositoryData::create(
-            Request::make('GET', 'repos/Alexis-Conception/'.$name)
+            Request::make('GET', 'repos/'. config("github.organization") .'/'.$name)
         );
     }
 
@@ -94,7 +94,7 @@ class Repository
 
         self::ensureRepositoryExists($name);
 
-        return Request::make('DELETE', 'repos/Alexis-Conception/'.$name);
+        return Request::make('DELETE', 'repos/'. config("github.organization") .'/'.$name);
     }
 
     /**
@@ -111,7 +111,7 @@ class Repository
         self::ensureRepositoryDoesNotExist($name);
 
         throw_if(
-            $payload instanceof RepositoryPayload === false,
+            !($payload instanceof RepositoryPayload),
             \Exception::class,
             'Payload must be an instance of '.RepositoryPayload::class
         );
@@ -119,7 +119,7 @@ class Repository
         return RepositoryData::create(
             Request::make(
                 'POST',
-                'orgs/Alexis-Conception/repos',
+                'orgs/'. config("github.organization") .'/repos',
                 [
                     'name' => $name,
                     ...$payload->get(),

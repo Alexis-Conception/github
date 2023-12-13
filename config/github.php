@@ -7,7 +7,12 @@ return [
     /**
      * The token to use for authentication.
      */
-    'token' => env('GITHUB_TOKEN', null),
+    'token' => env('GITHUB_TOKEN'),
+
+    /**
+     * The organization to manage
+     */
+    'organization' => env('GITHUB_ORGANIZATION'),
 
     /**
      * The base url to use for the API requests.
