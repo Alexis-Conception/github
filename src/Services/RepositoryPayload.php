@@ -5,29 +5,53 @@ namespace AlexisConception\Github\Services;
 class RepositoryPayload
 {
     private ?string $name;
+
     private ?string $description;
+
     private ?string $homepage;
+
     private bool $private;
+
     private ?string $visibility;
+
     private bool $hasIssues;
+
     private bool $hasProjects;
+
     private bool $hasWiki;
+
     private bool $hasDownloads;
+
     private bool $isTemplate;
+
     private int $teamId;
+
     private bool $autoInit;
+
     private ?string $gitignoreTemplate;
+
     private ?string $licenseTemplate;
+
     private bool $allowSquashMerge;
+
     private bool $allowMergeCommit;
+
     private bool $allowRebaseMerge;
+
     private bool $allowAutoMerge;
+
     private bool $deleteBranchOnMerge;
+
     private bool $useSquashPrTitleAsDefault;
+
     private ?string $squashMergeCommitTitle;
+
     private ?string $squashMergeCommitMessage;
+
     private ?string $mergeCommitTitle;
+
     private ?string $mergeCommitMessage;
+
     private ?object $customProperties;
 
     public function __construct()
@@ -103,150 +127,175 @@ class RepositoryPayload
     public function setCustomProperties(object $customProperties): RepositoryPayload
     {
         $this->customProperties = $customProperties;
+
         return $this;
     }
 
     public function setMergeCommitMessage(string $mergeCommitMessage): RepositoryPayload
     {
         $this->mergeCommitMessage = $mergeCommitMessage;
+
         return $this;
     }
 
     public function setMergeCommitTitle(string $mergeCommitTitle): RepositoryPayload
     {
         $this->mergeCommitTitle = $mergeCommitTitle;
+
         return $this;
     }
 
     public function setSquashMergeCommitMessage(string $squashMergeCommitMessage): RepositoryPayload
     {
         $this->squashMergeCommitMessage = $squashMergeCommitMessage;
+
         return $this;
     }
 
     public function setSquashMergeCommitTitle(string $squashMergeCommitTitle): RepositoryPayload
     {
         $this->squashMergeCommitTitle = $squashMergeCommitTitle;
+
         return $this;
     }
 
     public function setName(string $name): RepositoryPayload
     {
         $this->name = $name;
+
         return $this;
     }
 
     public function setDescription(string $description): RepositoryPayload
     {
         $this->description = $description;
+
         return $this;
     }
 
     public function setHomepage(string $homepage): RepositoryPayload
     {
         $this->homepage = $homepage;
+
         return $this;
     }
 
     public function setPrivate(bool $private): RepositoryPayload
     {
         $this->private = $private;
+
         return $this;
     }
 
     public function setVisibility(string $visibility): RepositoryPayload
     {
         $this->visibility = $visibility;
+
         return $this;
     }
 
     public function setHasIssues(bool $hasIssues): RepositoryPayload
     {
         $this->hasIssues = $hasIssues;
+
         return $this;
     }
 
     public function setHasProjects(bool $hasProjects): RepositoryPayload
     {
         $this->hasProjects = $hasProjects;
+
         return $this;
     }
 
     public function setHasWiki(bool $hasWiki): RepositoryPayload
     {
         $this->hasWiki = $hasWiki;
+
         return $this;
     }
 
     public function setUseSquashPrTitleAsDefault(bool $useSquashPrTitleAsDefault): RepositoryPayload
     {
         $this->useSquashPrTitleAsDefault = $useSquashPrTitleAsDefault;
+
         return $this;
     }
 
     public function setDeleteBranchOnMerge(bool $deleteBranchOnMerge): RepositoryPayload
     {
         $this->deleteBranchOnMerge = $deleteBranchOnMerge;
+
         return $this;
     }
 
     public function setAllowAutoMerge(bool $allowAutoMerge): RepositoryPayload
     {
         $this->allowAutoMerge = $allowAutoMerge;
+
         return $this;
     }
 
     public function setAllowRebaseMerge(bool $allowRebaseMerge): RepositoryPayload
     {
         $this->allowRebaseMerge = $allowRebaseMerge;
+
         return $this;
     }
 
     public function setGitignoreTemplate(string $gitignoreTemplate): RepositoryPayload
     {
         $this->gitignoreTemplate = $gitignoreTemplate;
+
         return $this;
     }
 
     public function setLicenseTemplate(string $licenseTemplate): RepositoryPayload
     {
         $this->licenseTemplate = $licenseTemplate;
+
         return $this;
     }
 
     public function setAllowSquashMerge(bool $allowSquashMerge): RepositoryPayload
     {
         $this->allowSquashMerge = $allowSquashMerge;
+
         return $this;
     }
 
     public function setAllowMergeCommit(bool $allowMergeCommit): RepositoryPayload
     {
         $this->allowMergeCommit = $allowMergeCommit;
+
         return $this;
     }
 
     public function setAutoInit(bool $autoInit): RepositoryPayload
     {
         $this->autoInit = $autoInit;
+
         return $this;
     }
 
     public function setTeamId(int $teamId): RepositoryPayload
     {
         $this->teamId = $teamId;
+
         return $this;
     }
 
     public function setIsTemplate(bool $isTemplate): RepositoryPayload
     {
         $this->isTemplate = $isTemplate;
+
         return $this;
     }
 
     public function setHasDownloads(bool $hasDownloads): RepositoryPayload
     {
         $this->hasDownloads = $hasDownloads;
+
         return $this;
     }
 
@@ -374,5 +423,4 @@ class RepositoryPayload
     {
         return $this->squashMergeCommitTitle;
     }
-
 }

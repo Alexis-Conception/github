@@ -3,7 +3,6 @@
 namespace AlexisConception\Github\HttpClient;
 
 use AlexisConception\Github\Exceptions\GithubTokenNotSetException;
-use AlexisConception\Github\Exceptions\RepositoryAlreadyExistsException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Throwable;

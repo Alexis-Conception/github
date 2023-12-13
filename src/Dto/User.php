@@ -1,9 +1,11 @@
 <?php
+
 namespace AlexisConception\Github\Dto;
 
 use Spatie\LaravelData\Data;
 
-abstract class User extends Data implements DataTransferObjectInterface {
+abstract class User extends Data implements DataTransferObjectInterface
+{
     public function __construct(
         public ?string $login,
         public ?int $id,
@@ -23,9 +25,11 @@ abstract class User extends Data implements DataTransferObjectInterface {
         public ?string $receivedEventsUrl,
         public ?string $type,
         public ?bool $siteAdmin
-    ) {}
+    ) {
+    }
 
-    public static function create(?array $data): static {
+    public static function create(?array $data): static
+    {
         return new static(
             login: $data['login'] ?? null,
             id: $data['id'] ?? null,
