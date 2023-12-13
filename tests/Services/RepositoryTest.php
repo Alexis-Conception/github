@@ -1,7 +1,7 @@
 <?php
 
-use AlexisConception\Github\Services\Repository;
 use AlexisConception\Github\Dto\Repository as RepositoryData;
+use AlexisConception\Github\Services\Repository;
 
 describe('Repository', tests: function () {
     it('will not use debugging functions')

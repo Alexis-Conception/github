@@ -13,20 +13,20 @@ describe('Repository payload', tests: function () {
 
     it('attributes can be instantiated with fluent setters', function () {
         $payload = new RepositoryPayload();
-        $payload->setName("Repository Name")
+        $payload->setName('Repository Name')
             ->setDescription('Repository description')
             ->setPrivate(false)
             ->setHasIssues(true);
 
-        \PHPUnit\Framework\assertEquals("Repository Name", $payload->getName());
-        \PHPUnit\Framework\assertEquals("Repository description", $payload->getDescription());
+        \PHPUnit\Framework\assertEquals('Repository Name', $payload->getName());
+        \PHPUnit\Framework\assertEquals('Repository description', $payload->getDescription());
         \PHPUnit\Framework\assertEquals(false, $payload->isPrivate());
         \PHPUnit\Framework\assertEquals(true, $payload->hasIssues());
     });
 
     it('can retrieve values with get method (and with the name attribute)', function () {
         $payload = new RepositoryPayload();
-        $payload->setName("Repository Name");
+        $payload->setName('Repository Name');
 
         \PHPUnit\Framework\assertContainsEquals([
             'description' => null,
@@ -43,7 +43,7 @@ describe('Repository payload', tests: function () {
             'license_template' => null,
             'allow_squash_merge' => true,
             'allow_merge_commit' => true,
-            'allow_rebase_merge' =>true,
+            'allow_rebase_merge' => true,
             'allow_auto_merge' => false,
             'delete_branch_on_merge' => true,
             'use_squash_pr_title_as_default' => false,
@@ -52,7 +52,7 @@ describe('Repository payload', tests: function () {
             'merge_commit_title' => null,
             'merge_commit_message' => null,
             'custom_properties' => null,
-            'name' => $payload->getName()
+            'name' => $payload->getName(),
         ], $payload->get(withName: true));
     });
 
@@ -74,7 +74,7 @@ describe('Repository payload', tests: function () {
             'license_template' => null,
             'allow_squash_merge' => true,
             'allow_merge_commit' => true,
-            'allow_rebase_merge' =>true,
+            'allow_rebase_merge' => true,
             'allow_auto_merge' => false,
             'delete_branch_on_merge' => true,
             'use_squash_pr_title_as_default' => false,
@@ -82,7 +82,7 @@ describe('Repository payload', tests: function () {
             'squash_merge_commit_message' => null,
             'merge_commit_title' => null,
             'merge_commit_message' => null,
-            'custom_properties' => null
+            'custom_properties' => null,
         ], $payload->get());
     });
 });
