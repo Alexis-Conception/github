@@ -2,9 +2,8 @@
 
 namespace AlexisConception\Github;
 
-use AlexisConception\Github\Exceptions\RepositoryAlreadyExistsException;
 use AlexisConception\Github\Exceptions\GithubTokenNotSetException;
-use Exception;
+use AlexisConception\Github\Exceptions\RepositoryAlreadyExistsException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Throwable;
@@ -12,9 +11,13 @@ use Throwable;
 class Request
 {
     const API_VERSION = '2022-11-28';
+
     const BASE_URI = 'https://api.github.com/';
+
     const HEADER_ACCEPT = 'application/vnd.github+json';
+
     const CONTENT_TYPE = 'application/json';
+
     const AUTH_METHOD = 'Bearer';
 
     /**
@@ -33,6 +36,7 @@ class Request
     private function create(string $method, string $url, array $payload = []): string
     {
         self::ensureTokenHasBeenSet();
+
         return self::send($method, $url, $payload);
     }
 
@@ -47,12 +51,12 @@ class Request
         ]);
 
         $options = [
-            "headers" => [
-                "Authorization" => self::AUTH_METHOD . ' ' . config('github.token'),
-                "Accept" => self::HEADER_ACCEPT,
-                "X-GitHub-Api-Version" => self::API_VERSION,
-                "Content-Type" => self::CONTENT_TYPE
-            ]
+            'headers' => [
+                'Authorization' => self::AUTH_METHOD.' '.config('github.token'),
+                'Accept' => self::HEADER_ACCEPT,
+                'X-GitHub-Api-Version' => self::API_VERSION,
+                'Content-Type' => self::CONTENT_TYPE,
+            ],
         ];
 
         if ($payload !== null) {
@@ -81,9 +85,8 @@ class Request
     private static function ensureTokenHasBeenSet(): void
     {
         throw_if(
-            !config('github.token'),
+            ! config('github.token'),
             GithubTokenNotSetException::class,
         );
     }
-
 }

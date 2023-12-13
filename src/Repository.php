@@ -2,11 +2,11 @@
 
 namespace AlexisConception\Github;
 
-use AlexisConception\Github\Exceptions\RepositoryNameNotProvidedException;
-use Throwable;
-use GuzzleHttp\Exception\GuzzleException;
 use AlexisConception\Github\Exceptions\RepositoryAlreadyExistsException;
 use AlexisConception\Github\Exceptions\RepositoryDoesNotExistException;
+use AlexisConception\Github\Exceptions\RepositoryNameNotProvidedException;
+use GuzzleHttp\Exception\GuzzleException;
+use Throwable;
 
 class Repository
 {
@@ -56,7 +56,7 @@ class Repository
 
         self::ensureRepositoryExists($name);
 
-        return Request::make('GET', 'repos/Alexis-Conception/' . $name);
+        return Request::make('GET', 'repos/Alexis-Conception/'.$name);
     }
 
     /**
@@ -80,7 +80,7 @@ class Repository
 
         self::ensureRepositoryExists($name);
 
-        return Request::make('DELETE', 'repos/Alexis-Conception/' . $name);
+        return Request::make('DELETE', 'repos/Alexis-Conception/'.$name);
     }
 
     /**
@@ -97,10 +97,10 @@ class Repository
         self::ensureRepositoryDoesNotExist($name);
 
         return Request::make('POST', 'orgs/Alexis-Conception/repos', [
-            "name" => $name,
-            ...$payload
+            'name' => $name,
+            ...$payload,
         ]);
-	}
+    }
 
     /**
      * @throws Throwable
@@ -140,5 +140,4 @@ class Repository
             throw new RepositoryAlreadyExistsException($name);
         }
     }
-
 }
