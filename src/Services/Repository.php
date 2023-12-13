@@ -2,11 +2,11 @@
 
 namespace AlexisConception\Github\Services;
 
+use AlexisConception\Github\Dto\Repository as RepositoryData;
 use AlexisConception\Github\Exceptions\RepositoryAlreadyExistsException;
 use AlexisConception\Github\Exceptions\RepositoryDoesNotExistException;
 use AlexisConception\Github\Exceptions\RepositoryNameNotProvidedException;
 use AlexisConception\Github\HttpClient\Request;
-use AlexisConception\Github\Dto\Repository as RepositoryData;
 use GuzzleHttp\Exception\GuzzleException;
 use Throwable;
 
@@ -14,21 +14,19 @@ class Repository
 {
     /**
      * @return RepositoryData[]
+     *
      * @throws GuzzleException
      * @throws Throwable
      */
     public static function list(): array
     {
         $repositories = Request::make('GET', 'orgs/Alexis-Conception/repos');
+
         return array_map(function ($repository) {
             return RepositoryData::create($repository);
         }, $repositories);
     }
 
-    /**
-     * @param string $name
-     * @return bool
-     */
     public static function exists(string $name): bool
     {
         try {
@@ -46,10 +44,10 @@ class Repository
     }
 
     /**
+     * @return RepositoryData[]
+     *
      * @throws GuzzleException
      * @throws Throwable
-     *
-     * @return RepositoryData[]
      */
     public static function all(): array
     {
@@ -57,8 +55,6 @@ class Repository
     }
 
     /**
-     * @param string $name
-     * @return RepositoryData
      * @throws GuzzleException
      * @throws RepositoryDoesNotExistException
      * @throws Throwable
@@ -72,13 +68,11 @@ class Repository
         self::ensureRepositoryExists($name);
 
         return RepositoryData::create(
-            Request::make('GET', 'repos/Alexis-Conception/' . $name)
+            Request::make('GET', 'repos/Alexis-Conception/'.$name)
         );
     }
 
     /**
-     * @param string $name
-     * @return RepositoryData
      * @throws GuzzleException
      * @throws RepositoryDoesNotExistException
      * @throws Throwable
@@ -100,7 +94,7 @@ class Repository
 
         self::ensureRepositoryExists($name);
 
-        return Request::make('DELETE', 'repos/Alexis-Conception/' . $name);
+        return Request::make('DELETE', 'repos/Alexis-Conception/'.$name);
     }
 
     /**
@@ -119,7 +113,7 @@ class Repository
         throw_if(
             $payload instanceof RepositoryPayload === false,
             \Exception::class,
-            'Payload must be an instance of ' . RepositoryPayload::class
+            'Payload must be an instance of '.RepositoryPayload::class
         );
 
         return RepositoryData::create(
@@ -127,12 +121,12 @@ class Repository
                 'POST',
                 'orgs/Alexis-Conception/repos',
                 [
-                    "name" => $name,
-                    ...$payload->get()
+                    'name' => $name,
+                    ...$payload->get(),
                 ]
             )
         );
-	}
+    }
 
     /**
      * @throws Throwable
@@ -172,5 +166,4 @@ class Repository
             throw new RepositoryAlreadyExistsException($name);
         }
     }
-
 }

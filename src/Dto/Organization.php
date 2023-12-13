@@ -1,4 +1,7 @@
 <?php
+
 namespace AlexisConception\Github\Dto;
 
-class Organization extends User {}
+class Organization extends User
+{
+}
