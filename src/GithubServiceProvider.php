@@ -18,8 +18,6 @@ class GithubServiceProvider extends PackageServiceProvider
         $package
             ->name('github')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_github_table')
             ->hasCommand(GithubCommand::class);
     }
 }
