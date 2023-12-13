@@ -17,7 +17,6 @@ class GithubServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('github')
-            ->hasConfigFile()
-            ->hasCommand(GithubCommand::class);
+            ->hasConfigFile();
     }
 }
