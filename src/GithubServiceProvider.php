@@ -2,9 +2,9 @@
 
 namespace AlexisConception\Github;
 
+use AlexisConception\Github\Commands\GithubCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use AlexisConception\Github\Commands\GithubCommand;
 
 class GithubServiceProvider extends PackageServiceProvider
 {
