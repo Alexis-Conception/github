@@ -2,9 +2,9 @@
 
 namespace AlexisConception\Github\Tests;
 
+use AlexisConception\Github\GithubServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use AlexisConception\Github\GithubServiceProvider;
 
 class TestCase extends Orchestra
 {
