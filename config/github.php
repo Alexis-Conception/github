@@ -7,7 +7,7 @@ return [
     /**
      * The token to use for authentication.
      */
-    'token' => env('GITHUB_TOKEN'),
+    'token' => env('GITHUB_TOKEN', null),
 
     /**
      * The base url to use for the API requests.
