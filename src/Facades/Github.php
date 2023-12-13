@@ -11,6 +11,6 @@ class Github extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \AlexisConception\Github\Github::class;
+        return \AlexisConception\Github\GithubManager::class;
     }
 }
