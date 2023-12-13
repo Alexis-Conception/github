@@ -4,5 +4,4 @@ namespace AlexisConception\Github;
 
 class GithubManager
 {
-	
 }
