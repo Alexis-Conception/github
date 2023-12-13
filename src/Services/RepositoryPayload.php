@@ -299,12 +299,12 @@ class RepositoryPayload
         return $this;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -314,7 +314,7 @@ class RepositoryPayload
         return $this->private;
     }
 
-    public function getHomepage(): string
+    public function getHomepage(): ?string
     {
         return $this->homepage;
     }
@@ -324,27 +324,27 @@ class RepositoryPayload
         return $this->isTemplate;
     }
 
-    public function getGitignoreTemplate(): string
+    public function getGitignoreTemplate(): ?string
     {
         return $this->gitignoreTemplate;
     }
 
-    public function getCustomProperties(): object
+    public function getCustomProperties(): ?object
     {
         return $this->customProperties;
     }
 
-    public function getMergeCommitMessage(): string
+    public function getMergeCommitMessage(): ?string
     {
         return $this->mergeCommitMessage;
     }
 
-    public function getMergeCommitTitle(): string
+    public function getMergeCommitTitle(): ?string
     {
         return $this->mergeCommitTitle;
     }
 
-    public function isAllowAutoMerge(): bool
+    public function allowAutoMerge(): bool
     {
         return $this->allowAutoMerge;
     }
@@ -354,27 +354,27 @@ class RepositoryPayload
         return $this->autoInit;
     }
 
-    public function isHasWiki(): bool
+    public function hasWiki(): bool
     {
         return $this->hasWiki;
     }
 
-    public function isHasProjects(): bool
+    public function hasProjects(): bool
     {
         return $this->hasProjects;
     }
 
-    public function isHasIssues(): bool
+    public function hasIssues(): bool
     {
         return $this->hasIssues;
     }
 
-    public function getVisibility(): string
+    public function getVisibility(): ?string
     {
         return $this->visibility;
     }
 
-    public function isHasDownloads(): bool
+    public function hasDownloads(): bool
     {
         return $this->hasDownloads;
     }
@@ -384,42 +384,42 @@ class RepositoryPayload
         return $this->teamId;
     }
 
-    public function getLicenseTemplate(): string
+    public function getLicenseTemplate(): ?string
     {
         return $this->licenseTemplate;
     }
 
-    public function isAllowSquashMerge(): bool
+    public function allowSquashMerge(): bool
     {
         return $this->allowSquashMerge;
     }
 
-    public function isAllowMergeCommit(): bool
+    public function allowMergeCommit(): bool
     {
         return $this->allowMergeCommit;
     }
 
-    public function isAllowRebaseMerge(): bool
+    public function allowRebaseMerge(): bool
     {
         return $this->allowRebaseMerge;
     }
 
-    public function getSquashMergeCommitMessage(): string
+    public function getSquashMergeCommitMessage(): ?string
     {
         return $this->squashMergeCommitMessage;
     }
 
-    public function isUseSquashPrTitleAsDefault(): bool
+    public function useSquashPrTitleAsDefault(): bool
     {
         return $this->useSquashPrTitleAsDefault;
     }
 
-    public function isDeleteBranchOnMerge(): bool
+    public function deleteBranchOnMerge(): bool
     {
         return $this->deleteBranchOnMerge;
     }
 
-    public function getSquashMergeCommitTitle(): string
+    public function getSquashMergeCommitTitle(): ?string
     {
         return $this->squashMergeCommitTitle;
     }
