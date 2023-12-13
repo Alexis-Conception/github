@@ -23,7 +23,8 @@ class Owner
         public ?string $receivedEventsUrl,
         public ?string $type,
         public ?bool $siteAdmin
-    ) {}
+    ) {
+    }
 
     public static function create(?array $data): self
     {

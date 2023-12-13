@@ -16,7 +16,7 @@ describe('Organization repositories actions without authentication', tests: func
 
 describe('Organization repositories actions with authentication', function () {
     it('can get all repositories', function () {
-        if (config("github.token") && config("github.organization")) {
+        if (config('github.token') && config('github.organization')) {
             $repositories = Repository::all();
             \PHPUnit\Framework\assertIsArray($repositories);
             foreach ($repositories as $repository) {
@@ -28,7 +28,7 @@ describe('Organization repositories actions with authentication', function () {
     });
 
     it('can get a repository using show method', function () {
-        if (config("github.token") && config("github.organization")) {
+        if (config('github.token') && config('github.organization')) {
             $repositories = Repository::all();
             \PHPUnit\Framework\assertIsArray($repositories);
             foreach ($repositories as $r) {
@@ -43,7 +43,7 @@ describe('Organization repositories actions with authentication', function () {
     });
 
     it('can get a repository using get method', function () {
-        if (config("github.token") && config("github.organization")) {
+        if (config('github.token') && config('github.organization')) {
             $repositories = Repository::all();
             \PHPUnit\Framework\assertIsArray($repositories);
             foreach ($repositories as $r) {
@@ -58,9 +58,11 @@ describe('Organization repositories actions with authentication', function () {
     });
 
     it('can create a repository with a valid name', function () {
-        if (config("github.token") && config("github.organization")) {
-            $repositoryName = "Test Repository";
-            if (Repository::exists($repositoryName)) Repository::delete($repositoryName);
+        if (config('github.token') && config('github.organization')) {
+            $repositoryName = 'Test Repository';
+            if (Repository::exists($repositoryName)) {
+                Repository::delete($repositoryName);
+            }
             $repository = Repository::create($repositoryName);
             \PHPUnit\Framework\assertEquals($repository, Repository::show($repositoryName));
         } else {
@@ -69,9 +71,11 @@ describe('Organization repositories actions with authentication', function () {
     });
 
     it('can delete a repository', function () {
-        if (config("github.token") && config("github.organization")) {
-            $repositoryName = "Test Repository";
-            if (!Repository::exists($repositoryName)) Repository::create($repositoryName);
+        if (config('github.token') && config('github.organization')) {
+            $repositoryName = 'Test Repository';
+            if (! Repository::exists($repositoryName)) {
+                Repository::create($repositoryName);
+            }
             \PHPUnit\Framework\assertEquals(true, Repository::exists($repositoryName));
             Repository::delete($repositoryName);
             \PHPUnit\Framework\assertEquals(false, Repository::exists($repositoryName));

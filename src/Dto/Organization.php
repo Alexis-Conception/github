@@ -6,7 +6,7 @@ class Organization
 {
     public function __construct(
         public ?string $login,
-        public ?int    $id,
+        public ?int $id,
         public ?string $nodeId,
         public ?string $avatarUrl,
         public ?string $gravatarId,
@@ -22,9 +22,8 @@ class Organization
         public ?string $eventsUrl,
         public ?string $receivedEventsUrl,
         public ?string $type,
-        public ?bool   $siteAdmin
-    )
-    {
+        public ?bool $siteAdmin
+    ) {
     }
 
     public static function create(?array $data): self
