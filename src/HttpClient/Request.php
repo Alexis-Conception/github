@@ -1,8 +1,7 @@
 <?php
 
-namespace AlexisConception\Github;
+namespace AlexisConception\Github\HttpClient;
 
-use AlexisConception\Github\Exceptions\RepositoryAlreadyExistsException;
 use AlexisConception\Github\Exceptions\GithubTokenNotSetException;
 use Exception;
 use GuzzleHttp\Client;
@@ -33,6 +32,7 @@ class Request
     private function create(string $method, string $url, array $payload = []): string
     {
         self::ensureTokenHasBeenSet();
+
         return self::send($method, $url, $payload);
     }
 
@@ -65,14 +65,8 @@ class Request
                 ->getBody()
                 ->getContents();
         } catch (GuzzleException $exception) {
-            throw_if(
-                $exception->getCode() === 422,
-                RepositoryAlreadyExistsException::class,
-                $payload['name'] ?? explode('/', $url)[2]
-            );
+            throw new Exception($exception->getMessage());
         }
-
-        return '';
     }
 
     /**

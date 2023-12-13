@@ -1,30 +1,40 @@
 <?php
 
-namespace AlexisConception\Github;
+namespace AlexisConception\Github\Services;
 
-use AlexisConception\Github\Exceptions\RepositoryNameNotProvidedException;
-use Throwable;
-use GuzzleHttp\Exception\GuzzleException;
 use AlexisConception\Github\Exceptions\RepositoryAlreadyExistsException;
 use AlexisConception\Github\Exceptions\RepositoryDoesNotExistException;
+use AlexisConception\Github\Exceptions\RepositoryNameNotProvidedException;
+use AlexisConception\Github\HttpClient\Request;
+use AlexisConception\Github\Dto\Repository as RepositoryData;
+use GuzzleHttp\Exception\GuzzleException;
+use Throwable;
 
 class Repository
 {
     /**
+     * @return RepositoryData[]
      * @throws GuzzleException
      * @throws Throwable
      */
-    public static function list(): mixed
+    public static function list(): array
     {
-        return Request::make('GET', 'orgs/Alexis-Conception/repos');
+        $repositories = Request::make('GET', 'orgs/Alexis-Conception/repos');
+        return array_map(function ($repository) {
+            return RepositoryData::create($repository);
+        }, $repositories);
     }
 
+    /**
+     * @param string $name
+     * @return bool
+     */
     public static function exists(string $name): bool
     {
         try {
             $repositories = self::all();
             foreach ($repositories as $repository) {
-                if ($repository['name'] === self::formatRepositoryName($name)) {
+                if ($repository->name === self::formatRepositoryName($name)) {
                     return true;
                 }
             }
@@ -38,17 +48,22 @@ class Repository
     /**
      * @throws GuzzleException
      * @throws Throwable
+     *
+     * @return RepositoryData[]
      */
-    public static function all(): mixed
+    public static function all(): array
     {
         return self::list();
     }
 
     /**
+     * @param string $name
+     * @return RepositoryData
      * @throws GuzzleException
+     * @throws RepositoryDoesNotExistException
      * @throws Throwable
      */
-    public static function show(string $name): mixed
+    public static function show(string $name): RepositoryData
     {
         self::ensureRepositoryNameGiven($name);
 
@@ -56,14 +71,19 @@ class Repository
 
         self::ensureRepositoryExists($name);
 
-        return Request::make('GET', 'repos/Alexis-Conception/' . $name);
+        return RepositoryData::create(
+            Request::make('GET', 'repos/Alexis-Conception/' . $name)
+        );
     }
 
     /**
+     * @param string $name
+     * @return RepositoryData
      * @throws GuzzleException
+     * @throws RepositoryDoesNotExistException
      * @throws Throwable
      */
-    public static function get(string $name): mixed
+    public static function get(string $name): RepositoryData
     {
         return self::show($name);
     }
@@ -88,7 +108,7 @@ class Repository
      * @throws RepositoryAlreadyExistsException
      * @throws Throwable
      */
-    public static function create(string $name, array $payload = []): mixed
+    public static function create(string $name, RepositoryPayload $payload = new RepositoryPayload()): RepositoryData
     {
         self::ensureRepositoryNameGiven($name);
 
@@ -96,10 +116,22 @@ class Repository
 
         self::ensureRepositoryDoesNotExist($name);
 
-        return Request::make('POST', 'orgs/Alexis-Conception/repos', [
-            "name" => $name,
-            ...$payload
-        ]);
+        throw_if(
+            $payload instanceof RepositoryPayload === false,
+            \Exception::class,
+            'Payload must be an instance of ' . RepositoryPayload::class
+        );
+
+        return RepositoryData::create(
+            Request::make(
+                'POST',
+                'orgs/Alexis-Conception/repos',
+                [
+                    "name" => $name,
+                    ...$payload->get()
+                ]
+            )
+        );
 	}
 
     /**
